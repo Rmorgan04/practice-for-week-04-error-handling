@@ -1,5 +1,8 @@
 // 1.
 function sum(array) {
+  if (array === null) {
+    throw new Error("Array cannot be null");
+  }
   let sum = 0;
   for (let i = 0; i < array.length; i++) {
     sum += array[i];
@@ -7,14 +10,31 @@ function sum(array) {
   return sum;
 }
 
-let res = sum(null);
-console.log(res);
+try {
+  let res = sum(null);
+  console.log(res);
+} catch (error) {
+  // if (error instanceof TypeError) {
+    console.error(error.name + ' ' + error.message);
+  // }
+  
+}
 
 // 2.
-// tests
-sayName("Alex");
-sayName(1);
-// Your code here
+sayName = name => {
+  console.log(`${name}`);
+  if (typeof name !== 'string') {
+    throw new Error('This is not a string!')
+  }
+}
+try{
+  sayName("Alex");
+  sayName(1);
+} catch (error) {
+  console.error(error.name + ' ' + error.message);
+
+}
+
 
 // 3.
 function greet(greeting) {
@@ -24,3 +44,14 @@ function greet(greeting) {
 
   console.log(greeting);
 }
+
+  try {
+  greet(false);
+  } catch (error) {
+    console.error(error.name + ' ' + error.message);
+  } finally {
+    console.log('Hello World!');
+  }
+
+
+
